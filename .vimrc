@@ -22,3 +22,8 @@ set noswapfile
 set ignorecase
 set smartcase
 colo darkblue
+set nonu
+set relativenumber
+set incsearch
+set tw=80
+set wrap

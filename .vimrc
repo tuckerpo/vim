@@ -5,6 +5,7 @@ call plug#begin('~/.vim/pluggerinos')
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/seoul256.vim'
 call plug#end()
 filetype plugin indent on
 set tabstop=4
@@ -23,7 +24,7 @@ set noswapfile
 
 set ignorecase
 set smartcase
-colo darkblue
+colo seoul256
 set nonu
 set relativenumber
 set incsearch

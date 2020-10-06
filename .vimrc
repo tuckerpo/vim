@@ -33,3 +33,25 @@ set wrap
 
 " Remaps
 nnoremap <C-p> :Files<Cr>
+
+function ForceFormatBuffer()
+    if !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+        let cursor_pos = getpos('.')
+        :%!clang-format
+        call setpos('.', cursor_pos)
+    endif
+endfunction
+
+function FormatBuffer()
+    if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+        let cursor_pos = getpos('.')
+        :%!clang-format
+        call setpos('.', cursor_pos)
+    endif
+endfunction
+
+function! Strip(in_str)
+    return substitute(a:in_str, '^\s*\(.\{-}\)\s*$', '\1', '')
+endfunction
+
+autocmd BufWritePre *.h,*.hh,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call ForceFormatBuffer()

@@ -5,7 +5,9 @@ call plug#begin('~/.vim/pluggerinos')
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/seoul256.vim'
+Plug 'ludovicchabant/vim-gutentags'
+" Plug 'sts10/vim-pink-moon'
+" Plug 'junegunn/seoul256.vim'
 call plug#end()
 filetype plugin indent on
 set tabstop=4
@@ -24,12 +26,10 @@ set noswapfile
 
 set ignorecase
 set smartcase
-colo seoul256
+" colo seoul256
 set nonu
 set relativenumber
 set incsearch
-set tw=80
-set wrap
 
 " Remaps
 nnoremap <C-p> :Files<Cr>
@@ -41,6 +41,8 @@ function ForceFormatBuffer()
         call setpos('.', cursor_pos)
     endif
 endfunction
+
+nnoremap <C-f> :call ForceFormatBuffer()<Cr>
 
 function FormatBuffer()
     if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
@@ -54,4 +56,4 @@ function! Strip(in_str)
     return substitute(a:in_str, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
 
-autocmd BufWritePre *.h,*.hh,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call ForceFormatBuffer()
+"autocmd BufWritePre *.h,*.hh,*.hpp,*.c,*.cc,*.cpp,*.vert,*.frag :call ForceFormatBuffer()
